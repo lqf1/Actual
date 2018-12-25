@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="author" content="Barry"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/tabs.css}"/>
+    <link rel="stylesheet" th:href="@{/css/blog.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/wangEditor.js}"></script>
+    <title>太极开发者社区测试</title>
+</head>
+<body>
+<header th:replace="public/beforeHeader::beforeHeader"></header>
+<div class="container">
+    <div id="mainContent">
+        <div id="forumdiv">
+            <div class="widget widget-forums">
+                <div class="blog">
+                    <div class="blog-title">
+                        <label for="blog-title">
+                            <input type="text" class="form-control" id="blog-title" placeholder="请输入文章标题"/>
+                        </label>
+                    </div>
+                    <div class="blog-content">
+                        <div id="menu"></div>
+                        <div id="editor"></div>
+                        <p id="default">从这里开始您的创作</p>
+                        <div class="txt-box">
+                            <span id="btn-release" class="btn btn-outline-danger">发布博客</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-sentence-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.customConfig.onchange = function () {
+        $('#default').css('display', 'none');
+    };
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'justify',  // 对齐方式
+        'undo',  // 撤销
+        'redo'  // 重复
+    ];
+    editor.create();
+    $(function () {
+        $('#btn-release').click(function () {
+            var blogTitleVal = $('#blog-title').val();
+            var html = changeStr(editor.txt.html());
+            if (blogTitleVal === '') {
+                alert('文章标题不能为空');
+            } else if (html === '') {
+                alert('内容不能为空');
+            } else {
+                $.ajax({
+                    url: '/blogContent',
+                    type: 'get',
+                    data: {
+                        bName: blogTitleVal,
+                        content: html,
+                        username: $('#navbar').children('span').eq(5).find('span').text()
+                    },
+                    success: function () {
+                        window.location.href = '/home';
+                    }
+                });
+            }
+        });
+    });
+
+    function changeStr(html) {
+        if (html !== undefined) {
+            var reg = /<[^>]*>|<\/[^>]*>/gm;
+            html = html.replace(reg, '');
+            html = html.replace(/&nbsp;/g, ' ');
+            return html;
+        }
+        return '';
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

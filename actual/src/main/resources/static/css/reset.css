@@ -1,0 +1,24 @@
+#section {
+    width: 100%;
+}
+
+.section {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.re {
+    width: 100%;
+    margin-top: 251px;
+}
+
+#password > div {
+    width: 360px;
+    margin: 0 auto;
+}
+
+#password > div input {
+    width: 360px;
+    height: 46px;
+    border-radius: 23px;
+}

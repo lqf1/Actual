@@ -1,0 +1,576 @@
+.tabs-box {
+  width: 60%;
+  height: 500px;
+  border: 1px solid red;
+  padding: 3% 0 0 0;
+  margin: 40px;
+}
+
+.tabs-top {
+  width: 90%;
+  margin: 0 auto;
+  border-bottom: 1px solid cadetblue;
+  padding-bottom: 1%;
+}
+
+.tabs-top a {
+  margin-right: 3%;
+  font-size: 20px;
+}
+
+.tabs-content {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.tabs-content h5 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.big {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.tabs-content-one {
+  margin: 1% 0 3% 0;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.col {
+  color: #acadaf;
+}
+
+.col span {
+  margin-left: 3px;
+}
+
+.col-black {
+  color: black;
+}
+/*完成*/
+.demo-two {
+  max-height: 200px;
+  overflow: hidden;
+  padding: 13px 13px 0 13px;
+  background: #fff;
+  margin-bottom: 30px;
+  margin-left: 40px;
+}
+
+.demo-two-top {
+  padding-bottom: 10px;
+  /*height: 65px;*/
+  display: flex;
+  color: #c2c2c2;
+  border-bottom: 1px solid #c2c2c2;
+}
+
+.demo-two-top-left {
+  min-width: 45px;
+  margin-right: 20px;
+}
+
+.demo-two-top-left img {
+  max-width: 66px;
+  max-height: 52px;
+}
+
+.demo-two-top-right {
+  margin-left: 30%;
+  white-space: nowrap; /*禁止文本环绕*/
+}
+
+.two-cont {
+  color: #70a1cf;
+}
+
+.demo-two h3 {
+  font-size: 16px;
+  color: #414141;
+  font-weight: 600;
+}
+
+.demo-two-bottom {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+.demo-two-bottom a {
+  display: block;
+  padding: 7px;
+  background: #eee;
+  width: 80px;
+  margin: 23px 0 0 15px;
+}
+
+.b-col {
+  color: #c2c2c2;
+}
+
+.b-col2 {
+  color: #2a2f33;
+  font-weight: 600;
+}
+
+/*two完成*/
+.demo-two-fuyong {
+  padding: 13px 13px 50px 13px;
+  background: #fff;
+  margin-bottom: 300px;
+  margin-left: 40px;
+}
+
+.demo-two-fuyong-top {
+  padding-bottom: 10px;
+  /*height: 65px;*/
+  display: flex;
+  color: #c2c2c2;
+  border-bottom: 1px solid #c2c2c2;
+  justify-content: space-between;
+  height: 50px;
+  line-height: 50px;
+}
+
+.demo-two-fuyong-top p.join {
+  width: 40px;
+  height: 30px;
+  /* 	border-radius: 3px; */
+  background: #337ab7;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  padding: 2px;
+}
+
+.demo-two-fuyong-top p.drop {
+  width: 40px;
+  height: 30px;
+  /* 	border-radius: 3px; */
+  background: #d05353;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  padding: 2px;
+}
+
+.demo-two-fuyong-top p.post {
+  width: 60px;
+  height: 30px;
+  /* 	border-radius: 3px; */
+  background: #5cb85c;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  padding: 2px;
+}
+
+.demo-two-fuyong-bottom {
+  padding-bottom: 10px;
+  /* 	height: 65px; */
+  display: flex;
+  color: #c2c2c2;
+  border-bottom: 1px dashed #c2c2c2;
+  padding-top: 14px;
+}
+
+.demo-two-fuyong-bottom-left {
+  width: 23px;
+  margin-left: 5px;
+}
+
+.demo-two-fuyong-bottom-left img {
+  border-radius: 3px;
+  min-width:23px;
+}
+
+.demo-two-fuyong-bottom-right {
+  margin-right: 5%;
+  min-width:10%;
+}
+
+.demo-two-fuyong-bottom-center {
+  margin-left: 10px;
+  flex-grow: 1;
+}
+
+.demo-two-fuyong-bottom-center p.abstract {
+  margin-left: 10px;
+  color: #c2c2c2;
+}
+
+/* 评论 */
+.reply-cited {
+  padding-left: 10px;
+  /* 	color: #c2c2c2; */
+  margin: 10px;
+  border: 1px dashed #c2c2c2;
+}
+
+.reply-cited>span.reply-cited-note {
+  /* 	padding-left: 10px; */
+  position: relative;
+  top: -13px;
+  background: white;
+}
+
+.reply-cited h5 {
+  /* 	padding-left: 10px; */
+  position: relative;
+  top: -10px;
+}
+
+.empty-note {
+  margin: 20px;
+  text-align: center;
+  color: #c2c2c2;
+}
+
+/* 用户头像 */
+.user-img {
+  width: 60px;
+  /* 	height:75px; */
+  text-align: center;
+  float: left;
+  margin: 5px;
+}
+
+div.user-img>img {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+div.user-img a {
+  color: #70a1cf;
+}
+
+/* 讨论小组 */
+.forum-main {
+  /* 	border-bottom: 1px dashed #AAAAAA; */
+  height: 75px;
+  margin: 0px;
+  overflow: hidden;
+  width: 50%;
+  /* 	display: flex, */
+  float: left;
+  padding: 15px;
+  padding-bottom: 25px;
+}
+
+.forum-main img {
+  float: left;
+  width: 48px;
+  margin: 15px;
+}
+
+div.forum-main a {
+  color: #70a1cf;
+}
+
+div.forum-main p {
+  color: #c2c2c2;
+}
+
+/*首页*/
+.panel {
+  padding: 80px 20px 0px;
+  min-height: 400px;
+  cursor: default;
+}
+
+.text-center {
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 10px;
+  max-width: 900px;
+  -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, .1);
+}
+
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+img {
+  border: 0;
+  /*vertical-align: bottom;*/
+  display: block;
+  width: 100%;
+}
+
+h2 {
+  padding-top: 20px;
+  font-size: 20px;
+}
+
+.padding-big {
+  padding: 20px;
+}
+
+.alert {
+  border-radius: 5px;
+  padding: 15px;
+  border: solid 1px #ddd;
+  background-color: #f5f5f5;
+}
+
+.menu-font {
+  font-size: 15px;
+  color: #3c7fb9;
+}
+
+.menu-col {
+  color: #6e6e6d;
+}
+
+/*--------用户和论坛--------*/
+.menu-1-box {
+  width: 48%;
+  height: 85px;
+  margin: 1%;
+  padding: 12px 0 12px 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #fff;
+  float: left;
+}
+
+.menu-1-img {
+  width: 62px;
+  height: 63px;
+}
+
+.menu-1-text {
+  margin-right: 25px;
+}
+
+/*1结束 */
+.menu-2-box {
+  width: 566px;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0 0 10px;
+}
+
+.menu-2-img {
+  /*background:#dedede ;*/
+  width: 26px;
+  height: 30px;
+  margin-top: 4px;
+}
+
+.menu-2-text {
+  width: 94%;
+}
+
+.menu-2-text p {
+  font-size: 13px;
+}
+
+.h5-me h6 {
+  font-size: 12px;
+}
+
+.h5-me {
+  display: flex;
+  justify-content: space-between;
+}
+
+.h5-me i {
+  padding: 2px;
+  background: #dedede;
+  color: white;
+  border-radius: 2px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.h5-me span {
+  color: #bed4e0;
+}
+
+.h5-me h6 {
+  color: deepskyblue;
+}
+
+.menu-2-box strong {
+  color: gainsboro;
+}
+/*-------*/
+.menu-3-box {
+  width: 154px;
+  margin-top: 100px;
+  margin-left: 100px;
+  background: white;
+}
+
+.menu-3-top .menu_3-img {
+  height: 40px;
+  width: 65px;
+}
+
+.menu-3-top {
+  display: flex;
+  justify-content: space-between;
+  background: #ffff;
+}
+
+.menu_3_img2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.iconfont {
+  color: #ea6f5a;
+}
+
+.menu-3-bottom ul {
+  width: 80%;
+  border: 1px solid #f5f5f5;
+  box-shadow: 1px 1px 1px;
+  background: #fff;
+  padding: 15px 0 16px 15px;
+  box-sizing: border-box;
+}
+
+.menu-3-bottom ul li {
+  font-size: 12px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #454545;
+}
+
+.menu-3-bottom ul li span {
+  margin-right: 10px;
+}
+/*-----*/
+.demo4 {
+  min-width: 260px;
+  padding: 12px;
+  margin: auto;
+  background: #fff;
+}
+
+.demo4-top {
+  height: 55px;
+  display: flex;
+}
+
+.img-box-4 {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.right-4 {
+  font-size: 13px;
+}
+
+.right-4 p:nth-child(1) {
+  color: #6aa2cb;
+}
+
+.right-4 p:nth-child(2) {
+  border: 1px solid gainsboro;
+  padding: 2px 5px 2px 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.demo4-bottom ul {
+  display: flex;
+  padding-bottom: 8px;
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
+  height: 55px;
+}
+
+.demo4-bottom ul li {
+  border-right: 1px solid gainsboro;
+  width: 46px;
+  text-align: center;
+  font-size: 12px;
+  padding-top: 10px;
+  list-style: none;
+}
+
+.demo4-bottom p:nth-child(1) {
+  color: #87b1d3;
+}
+
+.demo4-bottom p:nth-child(2) {
+  font-weight: 600;
+  color: #909b9d;
+  cursor: pointer;
+}
+
+.last-img {
+  width: 40px;
+  height: 17px;
+}
+
+.demo4-last {
+  padding: 10px 0 10px 10px;
+}
+
+.last-p {
+  display: flex;
+}
+
+.last-p {
+  margin-top: 7px;
+}
+
+.last-p p {
+  margin-right: 20px;
+}
+
+.cl {
+  color: #87b1d3;
+}
+
+.gr {
+  color: #909b9d;
+}
+
+.to-inline{
+  display:inline;
+}
+
+/* 消息 */
+.number span{
+  background-color:#fff;
+  border: 1px solid #eaeaea;
+  border-radius: 15px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+.red{
+  color: orangered;
+}
+.notify.list{
+  border: 1px solid #eaeaea;
+  padding: 10px 15px 5px 10px;
+  cursor: pointer;
+  display: block;
+  color: #888;
+}
+.unread{
+  font-weight: bold;
+}
+
+
+.full-hidden{
+  position: inherit;
+}

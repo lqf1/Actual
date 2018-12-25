@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>太极社区后台管理系统</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet"/>
+</head>
+<body>
+<head th:replace="public/header::header"/>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/user/page/1}">
+                            用户管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/role/page/1}">
+                            角色管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/permission/page/1}">
+                            权限管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/blog/page/1}">
+                            博客管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/disGroup/page/1}">
+                            讨论组管理
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+
+
+            <h2>用户管理</h2>
+            <a th:href="@{/user/addPage}"><button type="button" class="btn btn-primary float-right" style="margin-bottom: 10px">添加</button></a>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>用户名</th>
+                        <th>邮箱</th>
+                        <th>电话</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user:${userList}">
+                        <td th:text="${user.uid}">1,001</td>
+                        <td th:text="${user.username}">1,001</td>
+                        <td th:text="${user.email}">Lorem</td>
+                        <td th:text="${user.phoneNumber}">ipsum</td>
+                        <td th:text="${user.createDate}">dolor</td>
+                        <td>
+                            <a th:href="@{/user/editPage/{id}(id=${user.uid})}">
+                            <button class="btn btn-light">
+                                <svg height="14" width="14" class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1"  aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z">
+                                    </path>
+                                </svg>
+                            </button>
+                            </a>
+                            <button class="btn btn-light" th:id="${user.uid}" data-toggle="modal" data-target="#delete-modal" onclick="Delete(this)">
+                                <svg  height="14" width="14" class="octicon octicon-trashcan" viewBox="0 0 12 16" version="1.1"  aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <a th:href="@{/user/editRole/{id}(id=${user.uid})}">
+                            <button class="btn btn-light">
+                                <svg height="14" width="14" class="octicon octicon-person" viewBox="0 0 12 16" version="1.1"  aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12 14.002a.998.998 0 0 1-.998.998H1.001A1 1 0 0 1 0 13.999V13c0-2.633 4-4 4-4s.229-.409 0-1c-.841-.62-.944-1.59-1-4 .173-2.413 1.867-3 3-3s2.827.586 3 3c-.056 2.41-.159 3.38-1 4-.229.59 0 1 0 1s4 1.367 4 4v1.002z">
+                                    </path>
+                                </svg>
+                            </button>
+                            </a>
+                            <button class="btn btn-light" th:onclick="'javascript: Reset('+${user.uid}+')'">
+                                <svg height="14" class="octicon octicon-sync" viewBox="0 0 12 16" version="1.1" width="14" aria-hidden="true"><path fill-rule="evenodd" d="M10.24 7.4a4.15 4.15 0 0 1-1.2 3.6 4.346 4.346 0 0 1-5.41.54L4.8 10.4.5 9.8l.6 4.2 1.31-1.26c2.36 1.74 5.7 1.57 7.84-.54a5.876 5.876 0 0 0 1.74-4.46l-1.75-.34zM2.96 5a4.346 4.346 0 0 1 5.41-.54L7.2 5.6l4.3.6-.6-4.2-1.31 1.26c-2.36-1.74-5.7-1.57-7.85.54C.5 5.03-.06 6.65.01 8.26l1.75.35A4.17 4.17 0 0 1 2.96 5z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li th:class="${page==1}?'page-item disabled':'page-item'">
+                            <a class="page-link" th:href="@{/user/page/{num}(num=${page}-1)}">上一页</a>
+                        </li>
+                        <li th:each="i:${#numbers.sequence(1,pageSize)}" th:class="${i==page}?'page-item active':'page-item'">
+                            <a class="page-link" th:href="@{/user/page/{num}(num=${i})}" th:text="${i}">2</a>
+                        </li>
+                        <li th:class="${page==pageSize}?'page-item disabled':'page-item'">
+                            <a class="page-link" th:href="@{/user/page/{num}(num=${page}+1)}">下一页</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </main>
+    </div>
+</div>
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">你正在删除一条数据</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>确定要删除吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="affirm-delete" data-dismiss="modal" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reset-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">重置密码</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>重置成功</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/jquery-3.2.1.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+<script>
+    /*<![CDATA[*/
+    //设置当条id的存储变量
+    var id = null;
+    var userObj = null;
+    $(function () {
+        $("#affirm-delete").click(function () {
+            $.get("/user/delete?id="+id,function (data) {
+                console.log(data.msg)
+               $(userObj).parent().parent().remove();
+            })
+        })
+
+    });
+    function Reset(num) {
+        $.get("/user/reset/"+num,function (data) {
+            if(data.code==1){
+                $("#reset-modal").modal("show")
+            }
+        })
+    }
+    function Delete(obj) {
+        id = obj.id;
+        userObj = obj;
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

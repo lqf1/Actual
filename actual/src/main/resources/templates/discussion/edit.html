@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>太极社区后台管理系统</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet"/>
+    <link th:href="@{/css/form-validation.css}" rel="stylesheet"/>
+</head>
+<body>
+<head th:replace="public/header::header"/>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link " th:href="@{/user/page/1}">
+                            用户管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/role/page/1}">
+                            角色管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/permission/page/1}">
+                            权限管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/blog/page/1}">
+                            博客管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/disGroup/page/1}">
+                            讨论组管理
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="col-md-4 order-md-2 mb-4"></div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">讨论组信息</h4>
+                <form th:action="${dissionList.did==null}?'/disGroup/add':'/disGroup/edit'" th:object="${dissionList}"
+                      method="post" class="needs-validation" novalidate="">
+                    <div class="mb-3" hidden="hidden">
+                        <label for="did">ID</label>
+                        <div class="input-group">
+                            <input th:field="*{did}" type="text" class="form-control" id="did" placeholder="ID"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="discussionName">讨论组</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@</span>
+                            </div>
+                            <input th:field="*{discussionName}" type="text" class="form-control" id="discussionName" placeholder="讨论组名" required=""/>
+                            <div class="invalid-feedback" style="width: 100%;">
+                                讨论组名必须填写
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr class="mb-4"/>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">提交</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+<script th:src="@{/js/jquery-3.2.1.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/holder.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/popper.min.js}" type="text/javascript"></script>
+<script>
+    (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</body>
+</html>

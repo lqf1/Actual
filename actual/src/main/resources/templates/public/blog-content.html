@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="author" content="Barry"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/tabs.css}"/>
+    <link rel="stylesheet" th:href="@{/css/blog-content.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/wangEditor.js}"></script>
+    <title>太极开发者社区测试</title>
+</head>
+<body>
+<header th:replace="public/beforeHeader::beforeHeader"></header>
+<div class="container">
+    <div id="mainContent">
+        <div id="forumdiv">
+            <div class="widget widget-forums">
+                <div class="blog">
+                    <div class="blog-content-box">
+                        <div class="blog-header-box">
+                            <div class="title-box">
+                                <div class="blog-title h2" th:text="${blogInfo.bName}"></div>
+                                <div class="blog-header">
+                                    <span class="blog-create-time" th:text="${blogInfo.createDate}"></span>
+                                    <span class="blog-author" th:text="${blogAuthor}"></span>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <div class="blog-content" th:utext="${blogContent}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-sentence-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

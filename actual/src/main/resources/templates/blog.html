@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/tabs.css}" />
+
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <title>太极开发者社区测试</title>
+</head>
+<body>
+<div>
+    <head th:replace="public/beforeHeader::beforeHeader"/>
+</div>
+<section class="container">
+    <!-- 内容主页面  -->
+    <div id="mainContent">
+        <div id="forumdiv">
+            <div class="widget widget-forums">
+                <div class="blog">
+
+                    <div class="blog-content">
+                        <h3>
+                            <button type="button" th:align="left" class="btn btn-primary" onclick="window.location.href='/md'">发布博客</button>
+                        </h3>
+                        <div th:each="blogInfo:${blogList}">
+                            <div class="demo-two-fuyong-bottom">
+                                <div class="demo-two-fuyong-bottom-left">
+                                    <!-- <img th:src="${userDto.avatar}!=null?'/avatarUpload/'+${userDto.avatar}:'/common/images/default-head.jpg'"/> -->
+                                    <img src="images/default-head.jpg" />
+                                    <!-- <img th:src="@{'/avatarUpload/'+${userAvatar}}"/> -->
+                                </div>
+                                <div class="demo-two-fuyong-bottom-center">
+                                    <p class="b-col2"><a th:href="@{/showBlog/{id}(id=${blogInfo.bid})}" th:text="${blogInfo.bName}">关于NASA WorldWind的粗略介绍</a></p>
+                                    <p class="abstract"><time th:text="${blogInfo.createDate}">2018-12-03 15:02:50</time></p>
+                                </div>
+                                <div class="demo-two-fuyong-bottom-right">
+                                    <a class="two-cont"  th:text="${blogInfo.userInfo.username}">叶子琛</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-sentence-content"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/tabs.css}" />
+
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <title>太极开发者社区测试</title>
+</head>
+<body>
+<div>
+    <div>
+        <head th:replace="public/beforeHeader::beforeHeader"/>
+    </div>
+</div>
+<section class="container">
+    <!-- 内容主页面  -->
+    <div id="mainContent">
+        <div id="forumdiv">
+            <div class="widget widget-forums">
+                <a href="/group"><h3>讨论组</h3></a>
+                <div class="forum-main" th:each="discussion:${groupList}">
+                    <img src="/images/disGroup.gif"/>
+                    <div >
+                        <strong class="menu-font">
+                            <a th:href="@{/jgroup/1(disId=${discussion.did})}" th:text="${discussion.discussionName}" >大数据架构</a>
+                        </strong>
+                        <p th:text="${discussion.discussionName}+'技术讨论'">大数据系统架构方面的讨论</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

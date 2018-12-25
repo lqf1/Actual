@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache"/>
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+    <meta HTTP-EQUIV="expires" CONTENT="0"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/tabs.css"/>
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <title>个人中心</title>
+</head>
+<body>
+<header th:replace="public/beforeHeader::beforeHeader"></header>
+<section class="container">
+    <!-- 内容主页面  -->
+    <div id="mainContent">
+        <div id="forumdiv">
+            <div class="widget widget-forums">
+                <a href=""><h3>我加入的组</h3></a>
+                <div class="forum-main" th:each="group : ${DisGroupList}">
+                    <img src="/images/disGroup.gif"/>
+                    <strong class="menu-font">
+                        <div>
+                            <a th:href="@{/jgroup/1(disId=${group.did})}">
+                            <div th:text="${group.discussionName}"></div>
+                            </a>
+                        </div>
+                    </strong>
+                    <p class="">大数据系统架构方面的讨论</p>
+                </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="articlediv" class="widget widget_sentence">
+            <h3>我发布的博客</h3>
+            <article class="excerpt excerpt-1" style="" th:each="blogList:${BlogList}">
+                <a class="focus" title="${blogAticle.title}" target="_blank" href="/?id="></a>
+                <header>
+                    <h2>
+                        <a title="${blogAticle.title}" target="_blank" th:href="@{/showBlog/{id}(id=${blogList.bid})}" th:text="${blogList.bName }">谷歌浏览器chrome的vuejs devtools 插件的安装 </a>
+                    </h2>
+                </header>
+                <p class="meta">
+                    <time class="time">
+                        <i class="glyphicon glyphicon-time"></i>
+                        <span th:text="${blogList.createDate}">2018-12-14</span>
+                    </time>
+                    <a href="/?id=">
+                        <i class="glyphicon glyphicon-user"></i> <span th:text="${blogList.userInfo.username}">aaa</span>
+                    </a>
+                    <i class="glyphicon "></i>
+                    <!--访问数&nbsp;<span class="dropdown-toggle" rel="nofollow">23</span>&nbsp;&nbsp;
+                    评论数&nbsp;<span class="dropdown-toggle" rel="nofollow">0</span>-->
+                </p>
+                <p class="note"></p>
+            </article>
+        </div>
+
+</section>
+
+<div>
+    <footer class="footer">
+        <div class="container">
+            Copyright @ 2018 太极旺仔牛奶小组 Powered By Innovation and Research Institute
+        </div>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" 	xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>403 Page</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/403.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="alert alert-danger form-signin" role="alert" >
+    <h4 class="alert-heading">访问被拒绝!</h4>
+    <p>不好意思, 你无法访问当前的这个链接.</p>
+    <p>你需要拥有一定的权限，请联系网站管理员。</p>
+    <p>当前登录的用户为: <span sec:authentication="name"></span></p>
+    <hr/>
+    <p class="mb-0">你可以点击这里返回<a href="javascript:history.back(-1)">上一页</a></p>
+
+    <div  sec:authorize="isAuthenticated()">或者可以更换一个有权限的账户
+    <form action="/logout" th:action="@{/logout}" method="post" style="display: inline-block">
+    <input class="btn btn-link" type="submit" value="退出当前用户" style="margin-bottom:3.5px; padding: 0;" />
+    </form>
+    </div>
+</div>
+</body>
+</html>

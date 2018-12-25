@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="author" content="Barry"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/tabs.css}"/>
+    <link rel="stylesheet" th:href="@{/css/blog-content.css}"/>
+    <link rel="stylesheet" th:href="@{/css/article-content.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/wangEditor.js}"></script>
+    <title>太极开发者社区测试</title>
+</head>
+<body>
+<header th:replace="public/beforeHeader::beforeHeader"></header>
+<div class="container">
+    <div id="mainContent">
+        <div id="forumdiv">
+            <div class="widget widget-forums">
+                <div class="blog">
+                    <div class="blog-content-box">
+                        <div class="blog-header-box">
+                            <div class="title-box">
+                                <div class="blog-title h2" th:text="${article.aName}"></div>
+                                <div class="blog-header">
+                                    <span class="blog-create-time" th:text="${article.createDate}"></span>
+                                    <span class="blog-author" th:text="${articleAuthor}"></span>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <div class="blog-content" th:utext="${content}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-sentence" style="padding-top: 50px;">
+                    <div class="re-comment" th:each="comment, commentStat : ${comments}">
+                        <div class="re-author">
+                            <span class="re-flour" th:text="${commentStat.index + 2} + 楼"></span>
+                            <span class="re-flour-author" th:text="${comment.cAuthor}"></span>
+                        </div>
+                        <div class="re-content" th:utext="${comment.content}" style="min-height: 100px;"></div>
+                        <div class="re-createDate" th:text="${comment.createDate}" style="color: #999999;"></div>
+                    </div>
+                    <div class="comment" style="margin: 50px 0 0 0;">
+                        <div id="article-toolbar" style="width: 1100px;margin: 0 auto;border: 1px solid #ccc;"></div>
+                        <div id="article-editor" class="article-editor"></div>
+                        <span class="max-count">
+                            <span id="word-count">0</span>
+                            /300
+                        </span>
+                        <span class="max-count-danger" style="display: none;">字数超出上限</span>
+                    </div>
+                    <div class="action">
+                        <span id="add-comment" class="btn btn-default">评论</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    var E = window.wangEditor, txtHtml;
+    var editor = new E('#article-toolbar', '#article-editor');
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'justify',  // 对齐方式
+        'undo',  // 撤销
+        'redo'  // 重复
+    ];
+    var wordCount = $('#word-count');
+    editor.customConfig.onchange = function (html) {
+        txtHtml = html;
+        var textHtml = changeStr(txtHtml);
+        var length = textHtml.length;
+        $('#word-count').text(length);
+        if (length <= 300) {
+            wordCount.removeClass('changed');
+        } else {
+            wordCount.addClass('changed');
+        }
+    };
+    editor.create();
+    $(function () {
+        $('#add-comment').click(function () {
+            var username = $('#navbar').children('span').eq(5).find('span').text();
+            if (username === '') {
+                alert('您还未登录，不能评论，请登录');
+            } else {
+                var length = parseInt(wordCount.text());
+                if (length !== 0 && length <= 300) {
+                    $.ajax({
+                        url: '/addComment',
+                        type: 'get',
+                        data: {
+                            content: editor.txt.html(),
+                            cAuthor: username,
+                            articleName: $('.blog-title').text()
+                        },
+                        success: function () {
+                            window.location.reload();
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    function changeStr(html) {
+        if (html !== undefined) {
+            var reg = /<[^>]*>|<\/[^>]*>/gm;
+            html = html.replace(reg, '');
+            html = html.replace(/&nbsp;/g, ' ');
+            return html;
+        }
+        return '';
+    }
+
+    /*]]>*/
+</script>
+</body>
+</html>

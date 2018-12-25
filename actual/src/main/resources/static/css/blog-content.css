@@ -1,0 +1,40 @@
+.blog-content-box {
+    padding: 0 30px 25px;
+}
+
+.blog-header-box {
+    padding-top: 16px;
+}
+
+.blog-create-time {
+    color: #858585;
+    width: 88%;
+    height: 24px;
+    overflow: hidden;
+}
+
+.blog-author {
+    color: #78a5f1;
+    margin-right: 14px;
+    margin-left: 25px;
+}
+
+.blog-title {
+    margin: 10px 0 20px 10px;
+}
+
+.title-box {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+.box-content {
+    position: relative;
+    padding-top: 16px;
+}
+
+.blog-content,
+.re-content {
+    word-break: normal;
+    word-wrap: break-word;
+}

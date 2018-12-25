@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/tabs.css}"/>
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <title>太极开发者社区测试</title>
+    <style type="text/css">
+        .pagination li {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <head th:replace="public/beforeHeader::beforeHeader"/>
+    </div>
+</div>
+<section class="container">
+    <div id="articlediv" class="widget widget_sentence">
+        <div id="articlediv1" class="widget widget_sentence">
+            <div class="demo-two-fuyong-bottom-center">
+                <span class="btn btn-primary" sec:authorize="isAuthenticated()" onclick="addGroup();">加入小组</span>
+                <span class="btn btn-primary" onclick="addArticle();">发布帖子</span>
+                <span class="disId" style="display: none;" th:text="${disId}"></span>
+            </div>
+        </div>
+        <div>
+            <div class="demo-two-fuyong-bottom" th:each="article:${articList}">
+                <div class="demo-two-fuyong-bottom-left">
+                </div>
+                <div class="demo-two-fuyong-bottom-center">
+                    <p class="b-col2"><a th:href="@{/findArticle/{id}(id=${article.aid})}" th:text="${article.aName}">关于NASA WorldWind的粗略介绍</a></p>
+                    <p class="abstract"><time th:text="${article.createDate}">2018-12-03 15:02:50</time></p>
+                </div>
+                <div class="demo-two-fuyong-bottom-right">
+                    <a class="two-cont" th:text="${article.userInfo.username}"></a>
+                </div>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content">
+                    <li th:class="${page==1}?'page-item disabled':'page-item'">
+                        <a class="page-link" th:href="@{/jgroup/{num}(num=${page}-1,disId=${disId})}">上一页</a>
+                    </li>
+                    <li th:each="i:${#numbers.sequence(1,pageSize)}"
+                        th:class="${i==page}?'page-item active':'page-item'">
+                        <a class="page-link" th:href="@{/jgroup/{num}(num=${i},disId=${disId})}" th:text="${i}">2</a>
+                    </li>
+                    <li th:class="${page==pageSize}?'page-item disabled':'page-item'">
+                        <a class="page-link" th:href="@{/jgroup/{num}(num=${page}+1,disId=${disId})}">下一页</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    function addArticle() {
+        window.location.href = '/article/' + $('.disId').text();
+    }
+
+    function addGroup() {
+        var username = $('#navbar').children('span').eq(5).find('span').text();
+        $.ajax({
+            url: '/addUserIntoGroup',
+            type: 'get',
+            data: {
+                username: username,
+                gid: parseInt($('.disId').text())
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+            }
+        });
+    }
+</script>
+</body>
+</html>

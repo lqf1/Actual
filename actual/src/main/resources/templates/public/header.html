@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" data-th-fragment="header" >
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">太极社区后台管理系统</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <form action="/logout" th:action="@{/logout}" method="post">
+                <input class="btn btn-default  " type="submit" value="退出" />
+            </form>
+
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>

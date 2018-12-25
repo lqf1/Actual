@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="author" content="Barry"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/reset.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <title>太极开发者社区测试</title>
+</head>
+<body>
+<header th:replace="public/beforeHeader::beforeHeader"></header>
+<div id="section">
+    <div class="section">
+        <div class="re">
+            <form id="password">
+                <div class="old-password">
+                    <label for="old">
+                        <input type="password" id="old" name="old" class="form-control"
+                               placeholder="请输入原密码"/>
+                    </label>
+                </div>
+                <div class="new-password">
+                    <label for="new">
+                        <input type="password" id="new" name="new" class="form-control"
+                               placeholder="请输入新密码"/>
+                    </label>
+                </div>
+                <div class="re-new-password">
+                    <label for="renew">
+                        <input type="password" id="renew" name="renew" class="form-control"
+                               placeholder="请再次输入新密码"/>
+                    </label>
+                </div>
+                <div class="re-submit">
+                    <label for="re-submit">
+                        <input type="button" id="re-submit" class="btn btn-primary" value="确认修改"/>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var oldPwd = $('#old').val();
+    var newPwd = $('#new').val();
+    $(function () {
+        $('#re-submit').click(function () {
+            var username = $('#navbar').children('span').eq(5).find('span').text();
+            if (username === '') {
+                alert('请先登录');
+            } else if (oldPwd === newPwd) {
+                var data = $('#password').serialize();
+                $.ajax({
+                    url: '/editPassword?' + data,
+                    type: 'get',
+                    data: {
+                        username: username
+                    },
+                    success: function () {
+                        window.location.href = '/home?username=' +
+                            $('.navbar').children('span').eq(5).find('span').text();
+                    },
+                    error: function () {
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+#blog-title,
+#article-title {
+    margin: 50px;
+    width: 1100px;
+}
+
+.blog-content {
+    margin: 0 50px 0 50px;
+}
+
+.txt-box {
+    margin: 50px 0 0 0;
+}
+
+#default {
+    position: absolute;
+    top: 190px;
+    left: 64px;
+    color: #d7d7d7;
+}
